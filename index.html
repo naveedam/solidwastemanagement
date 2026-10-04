@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WasteOS · Green Meadows Residency</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f4f6f5;--card:#fff;--tx:#12201b;--mut:#5d6b65;--bd:#dde3e0;--ac:#0e6b4f;--acs:#e3f2ec;--wet:#2f9e6b;--dry:#3d7fc4;--rej:#c98a2e;--oth:#8a7cc2;--bad:#b4402f;--bads:#fbe9e5;--warn:#9a6a10;--warns:#fbf1db;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1512;--card:#16201b;--tx:#e8efec;--mut:#9aaaa3;--bd:#27362f;--ac:#4cc79a;--acs:#173328;--bads:#3a1e19;--warns:#3a2f14;--bad:#f08c7a;--warn:#e5b95a}}
+:root[data-theme="dark"]{--bg:#0e1512;--card:#16201b;--tx:#e8efec;--mut:#9aaaa3;--bd:#27362f;--ac:#4cc79a;--acs:#173328;--bads:#3a1e19;--warns:#3a2f14;--bad:#f08c7a;--warn:#e5b95a}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{font-weight:600;font-size:17px;letter-spacing:-.2px}.logo small{display:block;font-weight:400;font-size:11px;color:var(--mut)}
+.seg{display:flex;background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:2px}
+.seg button,.tabs button{border:0;background:none;color:var(--mut);font:inherit;padding:6px 12px;border-radius:6px;cursor:pointer}
+.seg button.on{background:var(--card);color:var(--tx);font-weight:600;box-shadow:0 0 0 1px var(--bd)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+main{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+.note{background:var(--warns);color:var(--warn);border-radius:8px;padding:8px 12px;margin-bottom:14px;font-size:13px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--bd);margin-bottom:16px}.tabs button{border-radius:0;border-bottom:2px solid transparent;margin-bottom:-1px}.tabs button.on{color:var(--tx);border-color:var(--ac);font-weight:600}
+h1{font-size:22px;margin:0 0 2px;letter-spacing:-.4px}h2{font-size:14px;margin:0 0 10px;font-weight:600}.sub{color:var(--mut);margin:0 0 16px}
+.grid{display:grid;gap:12px}.g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px}
+.k{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--bd)}.k:last-child{border:0}.k b{font-weight:600}
+.big{font-size:30px;font-weight:600;letter-spacing:-1px;line-height:1.1}.mut{color:var(--mut)}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:99px;border:1px solid var(--bd);color:var(--mut)}
+.tag.est{background:var(--warns);color:var(--warn);border-color:transparent}.tag.act{background:var(--acs);color:var(--ac);border-color:transparent}
+.tag.open{background:var(--bads);color:var(--bad);border-color:transparent}.tag.warning{background:var(--warns);color:var(--warn);border-color:transparent}.tag.resolved{background:var(--acs);color:var(--ac);border-color:transparent}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--bd)}th{font-weight:500;color:var(--mut);font-size:12px}td.n,th.n{text-align:right}
+tr.cl{cursor:pointer}tr.cl:hover{background:var(--bg)}
+.bar{height:6px;background:var(--bd);border-radius:3px;min-width:70px}.bar i{display:block;height:100%;border-radius:3px;background:var(--ac)}
+.phone{max-width:420px;margin:0 auto}
+label{display:block;font-size:12px;color:var(--mut);margin:12px 0 4px}
+select,input{width:100%;font:inherit;padding:12px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{flex:1;min-width:30%;padding:12px 6px;text-align:center;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;cursor:pointer}
+.chip.on{border-color:var(--ac);background:var(--acs);color:var(--ac);font-weight:600}.chip.badc.on{border-color:var(--bad);background:var(--bads);color:var(--bad)}
+.cta{width:100%;margin-top:16px;padding:14px;border:0;border-radius:8px;background:var(--ac);color:var(--card);font:inherit;font-weight:600;cursor:pointer}
+.ring{width:130px;height:130px;margin:0 auto}.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:8px;z-index:9}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+svg text{font:12px "IBM Plex Sans",system-ui,sans-serif;fill:var(--tx)}
+</style></head><body>
+<header><div class="logo">WasteOS<small>Green Meadows Residency · Bengaluru</small></div>
+<div class="seg" id="roles"></div></header>
+<main id="app"></main>
+<script>
+const R=(s=>()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296})(7);
+const TW=[['A',91],['B',88],['C',76],['D',85],['E',82]],COST=206000,fmt=n=>Math.round(n).toLocaleString('en-IN'),rs=n=>'₹'+fmt(n);
+const flats=[];TW.forEach(([t,b])=>{for(let f=1;f<=10;f++)for(let u=1;u<=10;u++){const seg=Math.round(Math.min(100,Math.max(35,b+(R()-.5)*34)));const viol=R()<(100-seg)/90?1+Math.floor(R()*3):0;const x={id:`${t}-${f}${String(u).padStart(2,'0')}`,t,f,seg,viol,kg:+(.8+R()*1.4).toFixed(2),rec:Math.round(40+R()*60),sp:Math.round(50+R()*50)};x.score=Math.round(.5*seg+.25*Math.max(0,100-viol*30)+.15*x.rec+.1*x.sp);x.mkg=x.kg*30;flats.push(x)}});
+const base=flats.reduce((a,f)=>a+f.kg,0),days=[...Array(30)].map((_,i)=>{const t=base*([0,6].includes((i+2)%7)?1.12:1)*(.94+R()*.12),w=.52+(R()-.5)*.03,d=.33+(R()-.5)*.03,r=.12;return{w:t*w,d:t*d,r:t*r,o:t*(1-w-d-r)}});
+const sumKg=flats.reduce((a,f)=>a+f.mkg,0),sortedScores=flats.map(f=>f.score).sort((a,b)=>a-b);
+const EXP=[['Housekeeping labour',120000],['Equipment',18000],['Transportation',22000],['Processing',16000],['Disposal',14000],['Consumables',8000],['Maintenance',8000]];
+const KINDS=['Wet and dry mixed','Left outside collection time','Improper disposal','Bulk waste','Hazardous waste'],ST=['open','warning','resolved'];
+const viols=flats.filter(f=>f.viol).sort((a,b)=>b.viol-a.viol).slice(0,40).filter((_,i)=>i%3==0).map((f,i)=>({flat:f.id,d:`${(i%9)+1} Oct`,k:KINDS[i%5],sev:f.viol,st:ST[i%3]}));
+const S={role:'admin',tab:'dash',tower:null,flat:'A-104',st:{t:'A',flat:'A-101',cat:'wet',kg:'',m:'actual',seg:true,vk:KINDS[0],sev:1},events:[],adds:{w:0,d:0,r:0,o:0},extraViol:0};
+const CATS={wet:['Wet','w'],dry:['Dry','d'],rej:['Reject','r'],haz:['Hazardous','o'],ew:['E-waste','o']};
+function M(){const s=k=>days.reduce((a,x)=>a+x[k],0)+S.adds[k],w=s('w'),d=s('d'),r=s('r'),o=s('o'),tot=w+d+r+o,c=w*.94,rc=d*.7,rev=rc*14,disp=tot-c-rc,seg=flats.reduce((a,f)=>a+f.seg,0)/500;
+ return{w,d,r,o,tot,c,rc,rev,disp,div:(c+rc)/tot*100,rej:r/tot*100,cph:COST/500,ckg:COST/tot,net:COST-rev,seg,comp:flats.filter(f=>f.seg>=85&&!f.viol).length,att:flats.filter(f=>f.seg<70||f.viol>1).length,today:{w:days[29].w+S.adds.w,d:days[29].d+S.adds.d,r:days[29].r+S.adds.r,o:days[29].o+S.adds.o}}}
+function towerStats(){return TW.map(([t])=>{const fs=flats.filter(f=>f.t===t),kg=fs.reduce((a,f)=>a+f.mkg,0);return{t,fs,kg,seg:fs.reduce((a,f)=>a+f.seg,0)/fs.length,viol:fs.reduce((a,f)=>a+f.viol,0),cost:COST*kg/sumKg}}).sort((a,b)=>b.seg-a.seg)}
+function band(x1,y1,x2,y2,w,c){const m=(x1+x2)/2;return`<path d="M${x1},${y1} C${m},${y1} ${m},${y2} ${x2},${y2}" fill="none" stroke="var(${c})" stroke-opacity=".42" stroke-width="${Math.max(w,1)}"/>`}
+function flow(m){const H=200,g=10,k=(H-3*g)/m.tot,mid=[['Wet',m.w,'--wet'],['Dry',m.d,'--dry'],['Reject',m.r,'--rej'],['Other',m.o,'--oth']];let o='',y=0,ly=(H-m.tot*k)/2,ry=[0,0,0],ra=0;
+ const R3=[['Compost',m.c,'--wet'],['Recycled',m.rc,'--dry'],['Disposal',m.disp,'--rej']];R3.forEach((r,i)=>{ry[i]=ra;ra+=r[1]*k+g*2.5});let dp=ry[2];
+ mid.forEach(([n,v,c],i)=>{const h=v*k;o+=band(150,ly+h/2,300,y+h/2,h,c)+`<rect x="300" y="${y}" width="10" height="${h}" fill="var(${c})"/><text x="312" y="${y+h/2+4}" font-size="11">${n} ${fmt(v)} kg</text>`;ly+=h;
+  const sp=n=='Wet'?[[v*.94,0],[v*.06,2]]:n=='Dry'?[[v*.7,1],[v*.3,2]]:[[v,2]];let yy=y;sp.forEach(([a,to])=>{const hh=a*k,ty=to==2?dp:ry[to];o+=band(400,yy+hh/2,560,ty+hh/2,hh,c);if(to==2)dp+=hh;else ry[to]+=hh;yy+=hh});y+=h+g});
+ let yy=0;R3.forEach(([n,v,c],i)=>{const st=i==0?0:i==1?R3[0][1]*k+g*2.5:(R3[0][1]+R3[1][1])*k+g*5;o+=`<rect x="560" y="${st}" width="10" height="${v*k}" fill="var(${c})"/><text x="576" y="${st+v*k/2+4}">${n}</text><text x="576" y="${st+v*k/2+19}" class="mut" style="fill:var(--mut)">${fmt(v)} kg${i==1?' · '+rs(m.rev):''}</text>`});
+ return`<svg viewBox="0 0 700 ${H+20}" width="100%" role="img" aria-label="Waste flow from households to compost, recycling and disposal"><rect x="140" y="${(H-m.tot*k)/2}" width="10" height="${m.tot*k}" fill="var(--ac)"/><text x="4" y="${H/2}">Households</text><text x="4" y="${H/2+15}" style="fill:var(--mut)">${fmt(m.tot)} kg</text>${o}</svg>`}
+function bars(m){const mx=Math.max(...days.map((d,i)=>d.w+d.d+d.r+d.o+(i==29?S.adds.w+S.adds.d+S.adds.r+S.adds.o:0)));return`<svg viewBox="0 0 720 170" width="100%" role="img" aria-label="Daily waste, last 30 days">${days.map((d,i)=>{const a=i==29?S.adds:{w:0,d:0,r:0,o:0},v=[['w',d.w+a.w,'--wet'],['d',d.d+a.d,'--dry'],['r',d.r+a.r+d.o+a.o,'--rej']];let y=150;return v.map(([_,x,c])=>{const h=x/mx*140;y-=h;return`<rect x="${i*24+4}" y="${y}" width="18" height="${h}" fill="var(${c})"/>`}).join('')}).join('')}<text x="4" y="166" style="fill:var(--mut)">30 days ago</text><text x="716" y="166" text-anchor="end" style="fill:var(--mut)">Today</text></svg>`}
+const bar=v=>`<div class="bar"><i style="width:${v}%"></i></div>`;
+function admin(){const m=M(),T=S.tab;let h=`<div class="tabs">${[['dash','Dashboard'],['towers','Towers'],['viol','Violations']].map(([k,l])=>`<button class="${T==k?'on':''}" onclick="S.tab='${k}';S.tower=null;draw()">${l}</button>`).join('')}</div>`;
+ if(T=='dash'){h+=`<h1>What happened to our waste?</h1><p class="sub">Last 30 days · 500 flats · tower figures are weighed totals; household shares are <span class="tag est">Estimated</span></p>
+ <div class="grid g4"><div class="card"><h2>Today</h2><div class="big">${fmt(m.today.w+m.today.d+m.today.r+m.today.o)} kg</div><div class="mut">collected so far</div><div style="margin-top:8px"><div class="k"><span><i class="sw" style="background:var(--wet)"></i>Wet</span><b>${fmt(m.today.w)}</b></div><div class="k"><span><i class="sw" style="background:var(--dry)"></i>Dry</span><b>${fmt(m.today.d)}</b></div><div class="k"><span><i class="sw" style="background:var(--rej)"></i>Reject</span><b>${fmt(m.today.r)}</b></div><div class="k"><span><i class="sw" style="background:var(--oth)"></i>Other</span><b>${fmt(m.today.o)}</b></div></div></div>
+ <div class="card"><h2>Diversion</h2><div class="big">${m.div.toFixed(1)}%</div><div class="mut">of waste composted or recycled</div><div style="margin-top:8px"><div class="k"><span>Generated</span><b>${fmt(m.tot)} kg</b></div><div class="k"><span>Composted</span><b>${fmt(m.c)} kg</b></div><div class="k"><span>Recycled</span><b>${fmt(m.rc)} kg</b></div><div class="k"><span>To disposal</span><b>${fmt(m.disp)} kg</b></div><div class="k"><span>Reject rate</span><b>${m.rej.toFixed(1)}%</b></div></div></div>
+ <div class="card"><h2>Economics</h2><div class="big">${rs(m.net)}</div><div class="mut">net SWM cost this month</div><div style="margin-top:8px"><div class="k"><span>Total cost</span><b>${rs(COST)}</b></div><div class="k"><span>Recycling revenue</span><b>${rs(m.rev)}</b></div><div class="k"><span>Cost per flat</span><b>${rs(m.cph)}</b></div><div class="k"><span>Cost per kg</span><b>₹${m.ckg.toFixed(2)}</b></div></div></div>
+ <div class="card"><h2>Behaviour</h2><div class="big">${m.seg.toFixed(0)}%</div><div class="mut">average segregation</div><div style="margin-top:8px"><div class="k"><span>Households compliant</span><b>${m.comp}</b></div><div class="k"><span>Need attention</span><b>${m.att}</b></div><div class="k"><span>Violations logged</span><b>${flats.reduce((a,f)=>a+f.viol,0)+S.extraViol}</b></div><div class="k"><span>Best tower</span><b>${towerStats()[0].t}</b></div></div></div></div>
+ <div class="card" style="margin-top:12px"><h2>Waste flow, last 30 days</h2>${flow(m)}</div>
+ <div class="grid g2" style="margin-top:12px"><div class="card"><h2>Daily waste (kg)</h2>${bars(m)}</div><div class="card"><h2>Where the money goes</h2>${EXP.map(([n,v])=>`<div class="k"><span>${n}</span><b>${rs(v)}</b></div>`).join('')}</div></div>`}
+ if(T=='towers'&&!S.tower){h+=`<h1>Towers</h1><p class="sub">Select a tower to drill down to floors and flats. Cost share is <span class="tag est">Estimated</span> by weight.</p><div class="card"><table><tr><th>Tower</th><th class="n">Waste</th><th>Segregation</th><th class="n">Violations</th><th class="n">Est. cost</th></tr>${towerStats().map(x=>`<tr class="cl" onclick="S.tower='${x.t}';draw()"><td><b>Tower ${x.t}</b><div class="mut">100 flats</div></td><td class="n">${fmt(x.kg)} kg</td><td>${x.seg.toFixed(0)}%${bar(x.seg)}</td><td class="n">${x.viol}</td><td class="n">${rs(x.cost)}</td></tr>`).join('')}</table></div>`}
+ if(T=='towers'&&S.tower){const fs=flats.filter(f=>f.t==S.tower),fl=[...Array(10)].map((_,i)=>fs.filter(f=>f.f==10-i));h+=`<h1><a href="#" onclick="S.tower=null;draw();return false" style="color:var(--ac);text-decoration:none">Towers</a> / Tower ${S.tower}</h1><p class="sub">Floor view and flats needing attention</p><div class="grid g2"><div class="card"><h2>Floors</h2><table><tr><th>Floor</th><th>Segregation</th><th class="n">Waste</th></tr>${fl.map(a=>{const sg=a.reduce((x,f)=>x+f.seg,0)/10;return`<tr><td>${a[0].f}</td><td>${sg.toFixed(0)}%${bar(sg)}</td><td class="n">${fmt(a.reduce((x,f)=>x+f.mkg,0))} kg</td></tr>`}).join('')}</table></div><div class="card"><h2>Lowest WasteScores</h2><table><tr><th>Flat</th><th class="n">Score</th><th class="n">Segregation</th><th class="n">Violations</th></tr>${[...fs].sort((a,b)=>a.score-b.score).slice(0,8).map(f=>`<tr><td>${f.id}</td><td class="n">${f.score}</td><td class="n">${f.seg}%</td><td class="n">${f.viol}</td></tr>`).join('')}</table></div></div>`}
+ if(T=='viol'){const all=[...S.events.filter(e=>e.v).map(e=>e.v),...viols];h+=`<h1>Violations</h1><p class="sub">Open, then warning, then resolved. Staff reports appear here instantly.</p><div class="card"><table><tr><th>Flat</th><th>Issue</th><th>Date</th><th class="n">Severity</th><th>Status</th></tr>${all.map(v=>`<tr><td>${v.flat}</td><td>${v.k}</td><td>${v.d}</td><td class="n">${v.sev}</td><td><span class="tag ${v.st}">${v.st}</span></td></tr>`).join('')}</table></div>`}
+ return h}
+function fopts(t,sel){return flats.filter(f=>f.t==t).map(f=>`<option ${f.id==sel?'selected':''}>${f.id}</option>`).join('')}
+function staff(){const s=S.st;return`<div class="phone"><h1>Today's collection</h1><p class="sub">Staff-12 · record each pickup in under 20 seconds</p>
+ <div class="card"><label style="margin-top:0">Tower</label><div class="chips">${TW.map(([t])=>`<button class="chip ${s.t==t?'on':''}" style="min-width:15%" onclick="S.st.t='${t}';S.st.flat=flats.find(f=>f.t=='${t}').id;draw()">${t}</button>`).join('')}</div>
+ <label>Flat</label><select onchange="S.st.flat=this.value">${fopts(s.t,s.flat)}</select>
+ <label>Waste type</label><div class="chips">${Object.entries(CATS).map(([k,[n]])=>`<button class="chip ${s.cat==k?'on':''}" onclick="S.st.cat='${k}';draw()">${n}</button>`).join('')}</div>
+ <label>Weight (kg)</label><input type="number" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 1.8" value="${s.kg}" oninput="S.st.kg=this.value">
+ <label>Measurement</label><div class="chips"><button class="chip ${s.m=='actual'?'on':''}" onclick="S.st.m='actual';draw()">Actual</button><button class="chip ${s.m=='estimated'?'on':''}" onclick="S.st.m='estimated';draw()">Estimated</button></div>
+ <label>Segregation</label><div class="chips"><button class="chip ${s.seg?'on':''}" onclick="S.st.seg=true;draw()">Correct</button><button class="chip badc ${!s.seg?'on':''}" onclick="S.st.seg=false;draw()">Mixed</button></div>
+ <button class="cta" onclick="save()">Save collection</button></div>
+ <div class="card" style="margin-top:12px"><h2>Report an exception</h2><label style="margin-top:0">Issue</label><select onchange="S.st.vk=this.value">${KINDS.map(k=>`<option ${k==s.vk?'selected':''}>${k}</option>`).join('')}</select><button class="cta" style="background:var(--bad)" onclick="report()">Report for ${s.flat}</button></div>
+ <div class="card" style="margin-top:12px"><h2>History today</h2>${S.events.length?S.events.map(e=>`<div class="k"><span>${e.flat} · ${e.cat}</span><b>${e.kg} kg <span class="tag ${e.m=='actual'?'act':'est'}">${e.m}</span></b></div>`).join(''):'<p class="mut" style="margin:0">No collections yet. Save the first one above and the admin dashboard updates.</p>'}</div></div>`}
+function save(){const s=S.st,kg=parseFloat(s.kg);if(!(kg>0)){toast('Enter a weight above 0');return}const[cn,key]=CATS[s.cat];S.adds[key]+=kg;const e={flat:s.flat,cat:cn,kg,m:s.m};if(!s.seg){e.v={flat:s.flat,k:KINDS[0],d:'Today',sev:1,st:'open'};S.extraViol++}S.events.unshift(e);s.kg='';toast(`Saved ${kg} kg ${cn} for ${s.flat}`);draw()}
+function report(){S.extraViol++;S.events.unshift({flat:S.st.flat,cat:'Exception',kg:0,m:'actual',v:{flat:S.st.flat,k:S.st.vk,d:'Today',sev:2,st:'open'}});toast('Reported for '+S.st.flat);draw()}
+function resident(){const f=flats.find(x=>x.id==S.flat),pct=Math.round(sortedScores.filter(x=>x<f.score).length/5),est=COST*f.mkg/sumKg,avg=COST/500,diff=Math.round((est/avg-1)*100),C=2*Math.PI*54,badges=[];
+ if(f.seg>=95&&!f.viol)badges.push('Green Household');if(!f.viol)badges.push('Zero Contamination');if(f.rec>=85)badges.push('Recycling Champion');
+ const comp=[['Segregation',50,f.seg],['Contamination',25,Math.max(0,100-f.viol*30)],['Recycling',15,f.rec],['Special waste',10,f.sp]];
+ return`<div class="phone"><h1>My WasteScore</h1><label style="margin-top:0">Flat (demo: pick any)</label><select onchange="S.flat=this.value;draw()">${flats.map(x=>`<option ${x.id==S.flat?'selected':''}>${x.id}</option>`).join('')}</select>
+ <div class="card" style="margin-top:12px;text-align:center"><svg class="ring" viewBox="0 0 130 130"><circle cx="65" cy="65" r="54" fill="none" stroke="var(--bd)" stroke-width="10"/><circle cx="65" cy="65" r="54" fill="none" stroke="var(--ac)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C*f.score/100} ${C}" transform="rotate(-90 65 65)"/><text x="65" y="72" text-anchor="middle" style="font-size:32px;font-weight:600">${f.score}</text></svg>
+ <p style="margin:8px 0 0"><b>${pct>=50?`You're doing better than ${pct}% of households.`:`You're ${100-pct} points of the way to the top half. Small changes add up fast.`}</b></p></div>
+ <div class="card" style="margin-top:12px"><h2>How your score is made</h2>${comp.map(([n,w,v])=>`<div class="k"><span>${n} · ${w}%</span><b>${v}</b></div>${bar(v)}`).join('')}</div>
+ <div class="card" style="margin-top:12px"><h2>Your share of community cost <span class="tag est">Estimated</span></h2><div class="k"><span>Community average</span><b>${rs(avg)} / month</b></div><div class="k"><span>Your estimated contribution</span><b>${rs(est)}</b></div><p class="mut" style="margin:8px 0 0">${diff<=0?`You are ${Math.abs(diff)}% below the community average.`:`You are ${diff}% above the community average. Wet and dry segregation lowers everyone's cost.`} This is for information only. No billing is based on it.</p></div>
+ <div class="card" style="margin-top:12px"><h2>Recognition</h2>${badges.length?badges.map(b=>`<span class="tag act" style="margin-right:6px">${b}</span>`).join(''):'<p class="mut" style="margin:0">No badges yet. Zero violations this month earns Zero Contamination.</p>'}</div></div>`}
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}
+function draw(){document.getElementById('roles').innerHTML=[['admin','Admin'],['staff','Staff'],['resident','Resident']].map(([k,l])=>`<button class="${S.role==k?'on':''}" onclick="S.role='${k}';draw()">${l}</button>`).join('');
+ document.getElementById('app').innerHTML=`<div class="note">Prototype with simulated data. Nothing is saved or sent anywhere. Changes you make reset when you reload.</div>`+(S.role=='admin'?admin():S.role=='staff'?staff():resident())}
+draw();
+</script></body></html>
